@@ -2,17 +2,16 @@ pipeline{
     agent any
       stages {
         stage('clone'){
-				steps{
-          git 'https://github.com/patilume/maven-project.git'
+					steps{
+          	git 'https://github.com/patilume/maven-project.git'
 					}
-		}
-		stage('compile'){
-			steps{
-				withMaven(maven : 'maven'){
-					sh 'mvn compile'
+				}
+				stage('compile'){
+					steps{
+						withMaven(maven : 'maven'){
+						sh 'mvn compile'
+					}
 				}
 			}
-			
-		}
 	}
 }
