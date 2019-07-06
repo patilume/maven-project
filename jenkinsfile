@@ -1,0 +1,16 @@
+pipline {
+    agent any
+      stages {
+        stage('clone'){
+          git 'https://github.com/patilume/maven-project.git'
+		}
+		stage('compile'){
+			steps{
+				withMaven(maven : 'maven'){
+					sh 'mvn compile'
+				}
+			}
+			
+		}
+	}
+}
