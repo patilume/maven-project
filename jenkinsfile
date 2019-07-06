@@ -2,16 +2,15 @@ pipline {
     agent any
       stages {
         stage('clone'){
-		step{
-			git 'https://github.com/patilume/maven-project.git'
+          git 'https://github.com/patilume/maven-project.git'
 		}
-       	}
-	stage('compile'){
-		steps{
-			withMaven(maven : 'maven'){
-			sh 'mvn compile'
+		stage('compile'){
+			steps{
+				withMaven(maven : 'maven'){
+					sh 'mvn compile'
+				}
 			}
-			}
-			}
+			
+		}
 	}
 }
