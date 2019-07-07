@@ -7,6 +7,7 @@ pipeline{
 					}
 				}
 				stage('compile'){
+				agent label 'maven'}{
 					steps{
 						withMaven(maven : 'maven'){
 						sh 'mvn compile'
