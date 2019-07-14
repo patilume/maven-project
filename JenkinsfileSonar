@@ -3,7 +3,9 @@ pipeline {
 
     stages {
         stage('Git Checkout'){
-          git 'https://github.com/patilume/maven-project.git'
+			steps{
+				git 'https://github.com/patilume/maven-project.git'
+			}
         }
       
         stage ('Compile Stage') {
