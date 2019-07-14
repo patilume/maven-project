@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout'){
+          git 'https://github.com/patilume/maven-project.git'
+        }
+      
+        stage ('Compile Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
+
+        stage ('Testing Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage ('install Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn install'
+                }
+            }
+        }
+
+        stage ('build && SonarQube analysis') {
+            steps {
+				withSonarQubeEnv('sonar') {
+                    withMaven(maven : 'maven') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+				}	
+			}
+        }
+	}
+}
