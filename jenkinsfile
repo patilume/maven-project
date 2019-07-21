@@ -43,7 +43,6 @@ pipeline{
 							docker exec -it my-tomcat /bin/bash
 							cd webapps
 							scp webapp/target/*.war:webapps/
-						
 					   '''
 					//sh 'docker exec -it my-tomcat /bin/bash'
 					//sh 'cd webapps'
