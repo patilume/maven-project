@@ -39,7 +39,13 @@ pipeline{
 				steps{
 					sshagent(['tomcat-deploy']) {
 					//sh 'scp -o StrictHostKeyChecking=no webapp/target/*.war ec2-user@172.31.46.70:/usr/share/tomcat/webapps/'
-					sh 'scp -o StrictHostKeyChecking=no webapp/target/*.war ec2-user@172.31.46.70:8080:/usr/local/tomcat/webapps/'
+					sh 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.70'
+					sh 'docker exec -ti my-tomcat'
+					sh 'cd webapps'
+					sh 'scp webapp/target/*.war:webapps/'
+					
+					//:/usr/local/tomcat/webapps/
+					//webapp/target/*.war
 					
 					}
 				}
