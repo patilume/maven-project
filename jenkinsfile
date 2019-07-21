@@ -40,7 +40,7 @@ pipeline{
 					sshagent(['tomcat-deploy']) {
 					//sh 'scp -o StrictHostKeyChecking=no webapp/target/*.war ec2-user@172.31.46.70:/usr/share/tomcat/webapps/'
 					
-					sh ''' ssh StrictHostKeyChecking=no ec2-user@172.31.46.70<<EOT
+					sh ''' ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.70<<EOT
 							scp -o dockerfile ec2-user@172.31.46.70:/usr/local/
 							cd /usr/local/
 							docker build -t my-tomcat:1.0.0 .
