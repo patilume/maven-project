@@ -39,15 +39,13 @@ pipeline{
 				steps{
 					sshagent(['tomcat-deploy']) {
 					//sh 'scp -o StrictHostKeyChecking=no webapp/target/*.war ec2-user@172.31.46.70:/usr/share/tomcat/webapps/'
-					sh 'scp -o StrictHostKeyChecking=no **/dockerfile ec2-user@172.31.46.70:/usr/local/'
+					//sh 'scp -o StrictHostKeyChecking=no **/dockerfile ec2-user@172.31.46.70:/usr/local/'
 					
 					sh ''' ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.70<<EOT
-							cd /usr/local/
-							docker build -t my-tomcat:1.0.0 .
+							docker build -t my-tomcat:1.0.0 -f https://github.com/patilume/maven-project.git
 							docker run --rm --name my-tomcat -itd -p 8080:8080 my-tomcat:1.0.0
-							
 					   '''
-					   
+					   //cd /usr/local/
 					   //scp -o **/dockerfile ec2-user@172.31.46.70:/usr/local/
 					   /* 
 					   docker exec -it my-tomcat /bin/bash
