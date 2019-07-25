@@ -29,7 +29,8 @@ pipeline {
 					label 'docker-agent'
 					//args '-u root'
 					//args '-v $HOME/:/jenkins/'
-					args '-v $HOME/.m2:/var/lib/docker/'
+					//args '-v $HOME/.m2:/var/lib/docker/'
+					args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
 				} 
 			}
 			//agent { docker { image 'maven:3-alpine' } }
@@ -42,7 +43,7 @@ pipeline {
 				sh 'ls'
 				sh 'echo "--------------------"'
 				sh "echo $HOME"
-				sh "cd webapp/target && ls && mv webapp.war $HOME/"
+				sh "cd webapp/target && ls && cp webapp.war $HOME/"
 				//sh 'ls'
 			}
 		}
