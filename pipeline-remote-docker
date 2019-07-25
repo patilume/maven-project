@@ -1,15 +1,16 @@
 pipeline {
 	//make sure docker is installed on jenkins machine and docker service is active
 	agent { label 'docker-agent' }
-	stages{
-		stage('set enviornment'){
-			steps{
-				withEnv([]) {
+	withEnv([]) {
 					env.username = 'Umesh Patil'
 					env.email = 'patilume@gmail.com'
 					env.dockerImageName = 'my-webapp'
 					env.dockerImageVersion = '1.2.0'
 				}
+	stages{
+		stage('set enviornment'){
+			steps{
+				
 			}
 		}
 	}
