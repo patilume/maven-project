@@ -38,8 +38,8 @@ pipeline {
 				sh 'mvn --version'
 				sh 'pwd'
 				sh 'ls'
-				sh 'cd webapp'
-				sh 'ls'
+				sh 'cd webapp && ls'
+				//sh 'ls'
 			}
 		}
 
