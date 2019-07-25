@@ -5,7 +5,7 @@ pipeline {
 	stages{
 		stage('set enviornment'){
 			steps{
-				sript {
+				script {
 					env.username = 'Umesh Patil'
 					env.email = 'patilume@gmail.com'
 					env.dockerImageName = 'my-webapp'
