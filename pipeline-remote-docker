@@ -41,7 +41,7 @@ pipeline {
 				sh 'ls'
 				sh 'echo "--------------------"'
 				sh "echo $HOME"
-				sh "cd webapp/target && ls && mv webapp.war {$HOME}/"
+				sh "cd webapp/target && ls && mv webapp.war $HOME/"
 				//sh 'ls'
 			}
 		}
@@ -50,8 +50,8 @@ pipeline {
 			steps{
 				
 				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-				sh 'pwd'
-				sh "$HOME"
+				//sh 'pwd'
+				sh "echo $HOME"
 				sh 'ls'
 				sh 'cd webapp && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
