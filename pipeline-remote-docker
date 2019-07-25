@@ -27,6 +27,7 @@ pipeline {
 					//image 'maven:3-jdk-8' 
 					image 'maven:3-alpine'
 					label 'docker-agent'
+					args '-u root'
 				} 
 			}
 			//agent { docker { image 'maven:3-alpine' } }
