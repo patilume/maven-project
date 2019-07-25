@@ -27,7 +27,7 @@ pipeline {
 					//image 'maven:3-jdk-8' 
 					image 'maven:3-alpine'
 					label 'docker-agent'
-					args '-u root'
+					//args '-u root'
 				} 
 			}
 			//agent { docker { image 'maven:3-alpine' } }
@@ -50,6 +50,7 @@ pipeline {
 				sh 'pwd'
 				//sh "$HOME"
 				sh 'ls'
+				sh 'cd webapp/target && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				sh "docker build /home/jenkins/workspace/pipeline_remote_docker/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
