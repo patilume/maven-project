@@ -1,5 +1,5 @@
-node {
- agent { label 'docker-agent' }
+pipeline {
+agent { label 'docker-agent' }
 withEnv([]) {
     // some block
         
@@ -8,6 +8,7 @@ withEnv([]) {
 		env.dockerImageName = 'my-webapp'
 		env.dockerImageVersion = '1.2.0'
     }
+	stages{
 	
   stage('Git Checkout'){
         git url: 'https://github.com/patilume/maven-project.git',
@@ -21,7 +22,8 @@ withEnv([]) {
   stage('Build Docker Image'){
 		//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 		
-		sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
+		//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
+		sh "docker build  -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 		sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
 	try {
 		sh "docker rmi \$(docker images -q --filter 'dangling=true')"
@@ -31,17 +33,24 @@ withEnv([]) {
    }
    
    stage('Upload Image to DockerHub'){
-    withCredentials([string(credentialsId: 'my-docker-hub', variable: 'mydockerhub')]) {
+   
+   // This step should not normally be used in your script. Consult the inline help for details.
+	withDockerRegistry(credentialsId: 'docker-hub', url: 'https://cloud.docker.com/repository') {
 		// some block
 		sh "docker login -u patilume -p ${mydockerhub}"
-		}
+	}
+
+    /* withCredentials([string(credentialsId: 'my-docker-hub', variable: 'mydockerhub')]) {
+		// some block
+		sh "docker login -u patilume -p ${mydockerhub}"
+		} */
 		sh 'docker push patilume/${env.dockerImageName}:${BUILD_NUMBER}'
-  } 
+	} 
   
   stage('Remove Old Containers'){
     sshagent(['tomcat-deploy']) {
       try{
-        def sshCmd = 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.70'
+        def sshCmd = 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.35.129'
         def dockerRM = 'docker rm -f my-app'
         sh "${sshCmd} ${dockerRM}"
       }catch(error){
@@ -50,7 +59,7 @@ withEnv([]) {
   }
   stage('Deploy-Dev-Env'){
     sshagent(['tomcat-deploy']) {
-      def sshCmd = 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.70'
+      def sshCmd = 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.35.129'
 	  def dockerRun = 'docker run -d -p 8080:8080 --name my-app patilume/'
       sh "${sshCmd} ${dockerRun} ${env.dockerImageName}"
     }
@@ -71,5 +80,5 @@ withEnv([]) {
 	//withDockerServer([uri: 'tcp://172.31.46.70']) {
     // some block
 	//}
-
+}
 }
