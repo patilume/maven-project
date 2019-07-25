@@ -35,6 +35,7 @@ pipeline {
 				//sh "${mvnHome}/bin/mvn clean package"
 				sh 'mvn clean package'
 				sh 'mvn --version'
+				sh 'pwd'
 			}
 		}
 
@@ -42,7 +43,7 @@ pipeline {
 			steps{
 				
 				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-					
+				sh 'pwd'	
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				sh "docker build /home/jenkins/workspace/pipeline_remote_docker/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
