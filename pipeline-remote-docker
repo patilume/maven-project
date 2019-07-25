@@ -56,7 +56,7 @@ pipeline {
 				sh 'cd webapp && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				////sh "docker build /home/jenkins/workspace/pipeline_remote_docker/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
-				sh "docker build jenkins/.m2/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
+				sh "docker build $HOME/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				
 				sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
 				script{
