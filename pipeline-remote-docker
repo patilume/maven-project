@@ -36,6 +36,7 @@ pipeline {
 				sh 'mvn clean package'
 				sh 'mvn --version'
 				sh 'pwd'
+				sh 'ls'
 			}
 		}
 
