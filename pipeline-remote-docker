@@ -22,8 +22,8 @@ pipeline {
 		}
 
 		stage('MVN Package'){
-			//agent { docker {image 'maven:3-jdk-8' } }
-			agent { docker { image 'maven:3-alpine' } }
+			agent { docker {image 'maven:3-jdk-8' } }
+			//agent { docker { image 'maven:3-alpine' } }
 			steps{
 				//def mvnHome = tool name: 'maven', type: 'maven'
 				//sh "${mvnHome}/bin/mvn clean package"
