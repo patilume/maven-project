@@ -35,11 +35,12 @@ pipeline {
 			steps{
 				//def mvnHome = tool name: 'maven', type: 'maven'
 				//sh "${mvnHome}/bin/mvn clean package"
-				sh 'mvn clean deploy'
+				sh 'mvn clean install'
 				sh 'mvn --version'
 				sh 'pwd'
 				sh 'ls'
-				sh 'cd webapp/target && ls'
+				sh "cd webapp/target && ls && mv webapp.war {$HOME}/"
+				//sh 'mv webapp.war {$HOME}/
 				//sh 'ls'
 			}
 		}
@@ -49,7 +50,7 @@ pipeline {
 				
 				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 				sh 'pwd'
-				//sh "$HOME"
+				sh "$HOME"
 				sh 'ls'
 				sh 'cd webapp && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
