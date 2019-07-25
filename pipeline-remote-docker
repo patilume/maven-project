@@ -39,8 +39,9 @@ pipeline {
 				sh 'mvn --version'
 				sh 'pwd'
 				sh 'ls'
+				sh 'echo "--------------------"'
+				sh "echo $HOME"
 				sh "cd webapp/target && ls && mv webapp.war {$HOME}/"
-				//sh 'mv webapp.war {$HOME}/
 				//sh 'ls'
 			}
 		}
