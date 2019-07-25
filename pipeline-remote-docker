@@ -28,7 +28,8 @@ pipeline {
 					image 'maven:3-alpine'
 					label 'docker-agent'
 					//args '-u root'
-					args '-v $HOME/.m2:/jenkins/.m2'
+					//args '-v $HOME/:/jenkins/'
+					args '-v $HOME/.m2:/var/lib/docker/'
 				} 
 			}
 			//agent { docker { image 'maven:3-alpine' } }
