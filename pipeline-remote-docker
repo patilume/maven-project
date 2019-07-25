@@ -40,16 +40,18 @@ pipeline {
 
 		stage('Build Docker Image'){
 			steps{
-				try {
-					//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+				
+				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 					
-					//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
-					sh "docker build  -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
-					sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
-					
-					sh "docker rmi \$(docker images -q --filter 'dangling=true')"
-				}
-				catch(error) {
+				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
+				sh "docker build  -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
+				sh "docker tag patilume/${env.dockerImageName}:${BUILD_NUMBER} patilume/${env.dockerImageName}:${BUILD_NUMBER}:latest"
+				script{
+					try {	
+						sh "docker rmi \$(docker images -q --filter 'dangling=true')"
+					}
+					catch(error) {
+					}
 				}
 			}
 		}
