@@ -48,12 +48,13 @@ pipeline {
 				sh 'pwd'
 				sh 'ls'
 				sh 'echo "--------------------"'
-				sh 'cd ?/.m2/repository && ls -al'
+				//sh 'cd ?/.m2/repository && ls -al'
 				//sh "echo $HOME"
-				sh 'echo "--------------------"'
+				//sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
-				//sh "cd webapp/target && ls && cp webapp.war $HOME/"
-				sh "cd webapp/target && ls -al"
+				sh 'chmod 777 web/webapp.war'
+				sh "cd webapp/target && ls && cp webapp.war $HOME/"
+				//sh "cd webapp/target && ls -al"
 				//sh 'ls'
 			}
 		}
