@@ -48,7 +48,7 @@ pipeline {
 				sh 'pwd'
 				sh 'ls'
 				sh 'echo "--------------------"'
-				sh 'cd ? && ls -al'
+				sh 'cd ?/.m2/ && ls -al'
 				//sh "echo $HOME"
 				sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
