@@ -35,11 +35,13 @@ pipeline {
 			}
 			//agent { docker { image 'maven:3-alpine' } }
 			steps{
-				sh 'echo "--------------------"'
-				sh "echo ${-Duser.home}"
+				//sh 'echo "--------------------"'
+				//sh "echo ${-Duser.home}"
 				//def mvnHome = tool name: 'maven', type: 'maven'
 				//sh "${mvnHome}/bin/mvn clean package"
-				sh 'mvn clean install'
+				
+				sh 'mvn clean install -e -X'
+				sh "echo ${mvnHome}"
 				//sh 'mvn --version'
 				sh 'echo "-------pwd-------------"'
 				sh 'pwd'
