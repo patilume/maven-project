@@ -34,7 +34,7 @@ pipeline {
 					//args '-v $HOME/.m2:/var/maven/.m2'
 					//volumes/
 					//args '-v /webapp/target/:$HOME/vol/'
-					//args '-v /home/jenkins/jenkins_home/:var/jenkins_home/'
+					args '-v /home/jenkins/jenkins_home/:var/jenkins_home/'
 				} 
 			}
 			
