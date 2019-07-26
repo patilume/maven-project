@@ -43,10 +43,10 @@ pipeline {
 				sh 'mvn clean install -e -X'
 				sh "echo ${mvnHome}"
 				//sh 'mvn --version'
-				sh 'echo "-------pwd-------------"'
+				sh 'echo "--------------------"'
 				sh 'pwd'
 				//sh 'ls'
-				sh 'echo "-------$HOME-------------"'
+				sh 'echo "--------------------"'
 				sh "echo $HOME"
 				//sh "cd webapp/target && ls && cp webapp.war $HOME/"
 				//sh 'ls'
