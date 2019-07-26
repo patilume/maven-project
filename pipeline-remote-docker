@@ -48,10 +48,12 @@ pipeline {
 				sh 'pwd'
 				sh 'ls'
 				sh 'echo "--------------------"'
+				sh 'cd ? && ls -al'
 				//sh "echo $HOME"
-				//sh 'echo "--------------------"'
+				sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
 				//sh "cd webapp/target && ls && cp webapp.war $HOME/"
+				sh "cd webapp/target && ls -al"
 				//sh 'ls'
 			}
 		}
@@ -62,7 +64,7 @@ pipeline {
 				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 				sh 'pwd'
 				//sh "echo $HOME"
-				//sh 'ls'
+				sh 'ls'
 				//sh 'cd webapp && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
 				sh "docker build /home/jenkins/workspace/pipeline_remote_docker/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
