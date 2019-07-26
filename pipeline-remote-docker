@@ -60,8 +60,8 @@ pipeline {
 			steps{
 				
 				//def dockerTool = tool name: 'remotedocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-				//sh 'pwd'
-				sh "echo $HOME"
+				sh 'pwd'
+				//sh "echo $HOME"
 				//sh 'ls'
 				//sh 'cd webapp && ls'
 				//sh "docker build /var/lib/jenkins/workspace/pipeline_docker_remote_host/ -t patilume/${env.dockerImageName}:${BUILD_NUMBER}"
