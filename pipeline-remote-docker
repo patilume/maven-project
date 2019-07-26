@@ -1,9 +1,22 @@
 pipeline {
 	//make sure docker is installed on jenkins machine and docker service is active
+	//agent { label 'docker-agent' }
 	agent { 
-		label 'docker-agent' 
-		args '-v /home/jenkins/jenkins_home:/var/jenkins_home'
-	}
+				docker {
+					//image 'maven:3-jdk-8' 
+					image 'maven:3-alpine'
+					label 'docker-agent'
+					//args '-u root'
+					//args '-v $HOME/:/jenkins/'
+					//args '-v $HOME/.m2:/var/lib/docker/'
+					//args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
+					//args '-v $HOME/.m2:/var/maven/.m2'
+					//volumes/
+					//args '-v /webapp/target/:$HOME/vol/'
+					args '-v /home/jenkins/jenkins_home/:var/jenkins_home/'
+				} 
+			}
+			
 
 	stages{
 		stage('set enviornment'){
@@ -25,20 +38,7 @@ pipeline {
 		}
 
 		stage('MVN Package'){
-			agent { 
-				docker {
-					//image 'maven:3-jdk-8' 
-					image 'maven:3-alpine'
-					label 'docker-agent'
-					//args '-u root'
-					//args '-v $HOME/:/jenkins/'
-					//args '-v $HOME/.m2:/var/lib/docker/'
-					//args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
-					//args '-v $HOME/.m2:/var/maven/.m2'
-					//volumes/
-					//args '-v /webapp/target/:$HOME/vol/'
-				} 
-			}
+			
 			//agent { docker { image 'maven:3-alpine' } }
 			steps{
 				//sh 'echo "--------------------"'
