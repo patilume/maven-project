@@ -31,7 +31,8 @@ pipeline {
 					//args '-v $HOME/:/jenkins/'
 					//args '-v $HOME/.m2:/var/lib/docker/'
 					//args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
-					args '-v $HOME/.m2:/var/maven/.m2'
+					//args '-v $HOME/.m2:/var/maven/.m2'
+					//volumes/
 				} 
 			}
 			//agent { docker { image 'maven:3-alpine' } }
@@ -52,9 +53,9 @@ pipeline {
 				//sh "echo $HOME"
 				//sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
-				sh 'chmod 777 webapp/target/webapp.war'
-				sh "cd webapp/target && ls && cp webapp.war $HOME/"
-				sh "cd $HOME && ls -al && pwd"
+				//sh 'chmod 777 webapp/target/webapp.war'
+				//sh "cd webapp/target && ls && cp webapp.war $HOME/"
+				//sh "cd $HOME && ls -al && pwd"
 				//sh "cd webapp/target && ls -al"
 				//sh 'ls'
 			}
