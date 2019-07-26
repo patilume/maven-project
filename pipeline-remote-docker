@@ -46,9 +46,9 @@ pipeline {
 				//sh 'mvn --version'
 				sh 'echo "--------------------"'
 				sh 'pwd'
-				//sh 'ls'
+				sh 'ls'
 				sh 'echo "--------------------"'
-				sh "echo $HOME"
+				//sh "echo $HOME"
 				//sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
 				//sh "cd webapp/target && ls && cp webapp.war $HOME/"
