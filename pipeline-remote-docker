@@ -53,7 +53,8 @@ pipeline {
 				//sh 'echo "--------------------"'
 				//sh "echo ${webappDirectory}"
 				sh 'chmod 777 webapp/target/webapp.war'
-				sh "cd webapp/target && ls && cp webapp.war $HOME/"
+				sh "cd webapp/target && ls && cp webapp/target/webapp.war $HOME/"
+				sh "cd $HOME && ls -al && pwd"
 				//sh "cd webapp/target && ls -al"
 				//sh 'ls'
 			}
