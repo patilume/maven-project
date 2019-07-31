@@ -1,0 +1,10 @@
+pipeline{
+	agent any
+	stages{
+		stage('clone source code'){
+			steps{
+				git 'https://github.com/patilume/maven-project.git'
+			}
+		}
+	}
+}
