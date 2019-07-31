@@ -7,9 +7,11 @@ pipeline{
 			}
 		}
 		stage('compile'){
+			steps{
 			withMaven(jdk: 'jdk-1.8', maven: 'maven-3.5.2') {
 				// some block
 				sh 'mvn compile'
+			}
 			}
 		}
 	}
