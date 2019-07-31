@@ -6,12 +6,32 @@ pipeline{
 				git 'https://github.com/patilume/maven-project.git'
 			}
 		}
-		stage('compile'){
+		stage('compile cource code'){
 			steps{
-			withMaven(jdk: 'jdk-1.8', maven: 'maven-3.5.2') {
-				// some block
-				sh 'mvn compile'
+				withMaven(maven : 'maven-3.5.2'){
+					sh 'mvn compile'
+				}
 			}
+		}
+		stage('test'){
+				steps{
+					withMaven(maven : 'maven-3.5.2'){
+						sh 'mvn test'
+				}
+			}
+		}
+		stage('package'){
+				steps{
+					withMaven(maven : 'maven-3.5.2'){
+						sh 'mvn package'
+				}
+			}
+		}
+		stage('install'){
+				steps{
+					withMaven(maven : 'maven-3.5.2'){
+						sh 'mvn install'
+				}
 			}
 		}
 	}
