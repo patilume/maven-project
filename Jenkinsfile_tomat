@@ -6,5 +6,11 @@ pipeline{
 				git 'https://github.com/patilume/maven-project.git'
 			}
 		}
+		stage('compile'){
+			withMaven(jdk: 'jdk-1.8', maven: 'maven-3.5.2') {
+				// some block
+				sh 'mvn compile'
+			}
+		}
 	}
 }
