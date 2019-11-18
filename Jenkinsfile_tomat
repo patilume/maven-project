@@ -36,7 +36,11 @@ pipeline{
 		}
 		stage('deploy to tomcat'){
 			steps{
-				deploy adapters: [tomcat7(credentialsId: 'admin2', url: 'http://34.226.139.142:8080')], contextPath: null, war: '**/*.war'
+				//deploy adapters: [tomcat7(credentialsId: 'admin2', url: 'http://34.226.139.142:8080')], contextPath: null, war: '**/*.war'
+				sshagent(['ssh_tomcat']) {
+    					// some block
+					sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.95.227:/var/lib/tomcat/webapps'
+				}
 			}
 		}
 	}
