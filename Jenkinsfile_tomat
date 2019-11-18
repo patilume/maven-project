@@ -8,28 +8,28 @@ pipeline{
 		}
 		stage('compile cource code'){
 			steps{
-				withMaven(maven : 'maven-3.5.2'){
+				withMaven(jdk: 'jdk11.0.5', maven: 'mvn3.5.2'){
 					sh 'mvn compile'
 				}
 			}
 		}
 		stage('test'){
 				steps{
-					withMaven(maven : 'maven-3.5.2'){
+					withMaven(jdk: 'jdk11.0.5', maven: 'mvn3.5.2'){
 						sh 'mvn test'
 				}
 			}
 		}
 		stage('package'){
 				steps{
-					withMaven(maven : 'maven-3.5.2'){
+					withMaven(jdk: 'jdk11.0.5', maven: 'mvn3.5.2'){
 						sh 'mvn package'
 				}
 			}
 		}
 		stage('install'){
 				steps{
-					withMaven(maven : 'maven-3.5.2'){
+					withMaven(jdk: 'jdk11.0.5', maven: 'mvn3.5.2'){
 						sh 'mvn install'
 				}
 			}
