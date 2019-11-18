@@ -1,0 +1,6 @@
+node{
+  stage('Scm checkout')
+  {
+    git 'https://github.com/patilume/maven-project.git'
+  }
+}
