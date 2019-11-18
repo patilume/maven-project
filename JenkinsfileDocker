@@ -3,4 +3,12 @@ node{
   {
     git 'https://github.com/patilume/maven-project.git'
   }
+  stage('Package')
+  {
+    sh label: '', script: 'mvn clean package'
+  }
+  stage('Build Docker image')
+  {
+    sh 'docker build -t patilume/my-webapp:1.0.0 .'
+  }
 }
