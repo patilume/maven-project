@@ -19,6 +19,18 @@ node{
     }
     sh 'docker push patilume/my-webapp:1.0.0'
   }
+  stage('Remove old container')
+  {
+    sshagent(['deploy-to-dev-docker']) {
+      try{
+        def sshmd = 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.139'
+        def dockerRM = 'docker rm -f my-tomcat-app'
+        sh "${sshmd} ${dockerRM}"
+      }
+      catch(error){
+      }
+    }
+  }
   stage('Deploy to Dev')
   {
     def dockerRun = 'docker run -d -p 9000:8080 --name my-tomcat-app patilume/my-webapp:1.0.0'
