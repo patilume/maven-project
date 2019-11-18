@@ -15,7 +15,7 @@ node{
   {
     withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: 'dockerhub')]) {
       // some block
-      sh "docker login -u patilume -p ${dockerhub}"
+      sh "docker login -u patilume -p ${docker-hub}"
     }
     sh 'docker push patilume/my-webapp:1.0.0'
   }
