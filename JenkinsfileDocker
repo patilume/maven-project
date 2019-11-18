@@ -13,9 +13,9 @@ node{
   }
   stage('Push image to DockerHub')
   {
-    withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: 'dockerhub')]) {
+    withCredentials([string(credentialsId: 'my-docker-hub', variable: 'dockerhub')]) {
       // some block
-      sh "docker login -u patilume -p ${docker-hub}"
+      sh "docker login -u patilume -p ${dockerhub}"
     }
     sh 'docker push patilume/my-webapp:1.0.0'
   }
