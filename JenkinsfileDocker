@@ -19,4 +19,12 @@ node{
     }
     sh 'docker push patilume/my-webapp:1.0.0'
   }
+  stage('Deploy to Dev')
+  {
+    def dockerRun = 'docker run -d -p 9000:8080 --name my-tomcat-app patilume/my-webapp:1.0.0'
+    sshagent(['deploy-to-dev-docker']) {
+      // some block
+      sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.84.139 ${dockerRun}"
+    }
+  }
 }
